@@ -1,3 +1,61 @@
+
+/* YouTube and MP4 autoplay previews */
+.gallery .card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.gallery .card > img {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+/* Video preview layer */
+.gallery .card > iframe,
+.gallery .card > video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Keep gradient above video */
+.gallery .card::after {
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Keep property title and button visible */
+.gallery .card .cardCaption,
+.gallery .card .cardOpen {
+  z-index: 3;
+}
+
+/* Smooth hover effect */
+.gallery .card:hover > img {
+  transform: scale(1.04);
+}
+
+/* Mobile video rendering */
+@media (max-width: 580px) {
+  .gallery .card > iframe,
+  .gallery .card > video {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 @font-face {
   font-family: Hansief;
   src: url(assets/hansief.woff2);
